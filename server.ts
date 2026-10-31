@@ -38,7 +38,12 @@ function loadDatabase(): DatabaseSchema {
     if (fs.existsSync(DB_FILE)) {
       const data = fs.readFileSync(DB_FILE, 'utf-8');
       const parsed = JSON.parse(data);
-      if (parsed.users && parsed.reports) {
+      if (parsed.users && parsed.reports && parsed.reports.length > 0) {
+        return parsed;
+      }
+      if (parsed.users && parsed.users.length > 0) {
+        parsed.reports = initialSampleReports;
+        saveDatabase(parsed);
         return parsed;
       }
     }

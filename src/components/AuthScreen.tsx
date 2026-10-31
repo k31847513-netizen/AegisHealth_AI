@@ -103,6 +103,22 @@ export const AuthScreen: React.FC<Props> = ({ onSuccess }) => {
     }
   };
 
+  const handleAutoFillDemoLogin = () => {
+    setIsSignUp(false);
+    setEmail('alex.morgan@healthlens.ai');
+    setPassword('password123');
+    setError(null);
+  };
+
+  const handleAutoFillDemoSignUp = () => {
+    setIsSignUp(true);
+    setName('Alex Morgan');
+    setEmail('alex.newaccount@healthlens.ai');
+    setPassword('password123');
+    setConfirmPassword('password123');
+    setError(null);
+  };
+
   const handleForgotPasswordSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!forgotEmail) return;
@@ -253,6 +269,77 @@ export const AuthScreen: React.FC<Props> = ({ onSuccess }) => {
               Create Account
             </button>
           </div>
+
+          {/* Demo Credentials Visual Banner with 1-Click Auto-Fill */}
+          {!isSignUp ? (
+            <div className="p-3.5 bg-gradient-to-r from-teal-50 to-sky-50 border border-teal-200 rounded-xl space-y-2.5">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-teal-900 flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-teal-600 inline-block" />
+                  <span>Demo Login Credentials:</span>
+                </span>
+                <button
+                  type="button"
+                  onClick={handleAutoFillDemoLogin}
+                  className="text-[11px] font-bold text-teal-800 bg-white hover:bg-teal-100/70 border border-teal-300 px-2.5 py-1 rounded-lg transition-colors shadow-2xs"
+                >
+                  ⚡ Auto-fill Form
+                </button>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
+                <div
+                  onClick={handleAutoFillDemoLogin}
+                  className="p-2 bg-white rounded-lg border border-teal-100 cursor-pointer hover:border-teal-300 transition-colors"
+                  title="Click to copy and fill"
+                >
+                  <span className="text-[10px] text-slate-400 block font-sans font-medium">Email:</span>
+                  <span className="text-slate-900 font-bold select-all truncate block">alex.morgan@healthlens.ai</span>
+                </div>
+                <div
+                  onClick={handleAutoFillDemoLogin}
+                  className="p-2 bg-white rounded-lg border border-teal-100 cursor-pointer hover:border-teal-300 transition-colors"
+                  title="Click to copy and fill"
+                >
+                  <span className="text-[10px] text-slate-400 block font-sans font-medium">Password:</span>
+                  <span className="text-slate-900 font-bold select-all truncate block">password123</span>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="p-3.5 bg-gradient-to-r from-sky-50 to-indigo-50 border border-sky-200 rounded-xl space-y-2.5">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-sky-900 flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-sky-600 inline-block" />
+                  <span>Demo New Account Details:</span>
+                </span>
+                <button
+                  type="button"
+                  onClick={handleAutoFillDemoSignUp}
+                  className="text-[11px] font-bold text-sky-800 bg-white hover:bg-sky-100/70 border border-sky-300 px-2.5 py-1 rounded-lg transition-colors shadow-2xs"
+                >
+                  ⚡ Auto-fill Sign Up
+                </button>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
+                <div
+                  onClick={handleAutoFillDemoSignUp}
+                  className="p-2 bg-white rounded-lg border border-sky-100 cursor-pointer hover:border-sky-300 transition-colors"
+                  title="Click to copy and fill"
+                >
+                  <span className="text-[10px] text-slate-400 block font-sans font-medium">New Email:</span>
+                  <span className="text-slate-900 font-bold select-all truncate block">alex.newaccount@healthlens.ai</span>
+                </div>
+                <div
+                  onClick={handleAutoFillDemoSignUp}
+                  className="p-2 bg-white rounded-lg border border-sky-100 cursor-pointer hover:border-sky-300 transition-colors"
+                  title="Click to copy and fill"
+                >
+                  <span className="text-[10px] text-slate-400 block font-sans font-medium">New Password:</span>
+                  <span className="text-slate-900 font-bold select-all truncate block">password123</span>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Error Banner */}
           {error && (
@@ -465,9 +552,18 @@ export const AuthScreen: React.FC<Props> = ({ onSuccess }) => {
             ) : (
               <form onSubmit={handleForgotPasswordSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1">
-                    Your Registered Email
-                  </label>
+                  <div className="flex items-center justify-between mb-1">
+                    <label className="text-xs font-semibold text-slate-700">
+                      Your Registered Email
+                    </label>
+                    <button
+                      type="button"
+                      onClick={() => setForgotEmail('alex.morgan@healthlens.ai')}
+                      className="text-[11px] font-semibold text-teal-600 hover:text-teal-700"
+                    >
+                      Use Demo Email
+                    </button>
+                  </div>
                   <input
                     type="email"
                     required
