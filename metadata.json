@@ -1,0 +1,6 @@
+{
+  "name": "HealthLens AI",
+  "description": "AI-Powered Medical Report Explainer & Health Dashboard helping ordinary people understand blood tests and laboratory reports in simple English.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

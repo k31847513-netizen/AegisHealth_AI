@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "id": "demo-user-1",
+      "name": "Alex Morgan",
+      "email": "alex.morgan@healthlens.ai",
+      "passwordHash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+      "avatar": "/src/assets/images/avatar_man_alex_1793465339123.jpg",
+      "age": 34,
+      "gender": "Male",
+      "bloodGroup": "O+",
+      "createdAt": "2026-10-31T15:46:27.830Z"
+    }
+  ],
+  "reports": []
+}
